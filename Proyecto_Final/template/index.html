@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <title>Vacunas H1N1 y Estacional</title>
+
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    body {
+      background-image: url('https://th.bing.com/th/id/R.1d8548586adbcbcc47c332af986eb7ed?rik=hBrgY19%2f%2bXVt%2fQ&riu=http%3a%2f%2fwallpapercave.com%2fwp%2faLDdLAY.jpg&ehk=WwLkfcKp7VZzr7PHSJkIsGOZnZMwpP1ilLf9izebM3k%3d&risl=&pid=ImgRaw&r=0');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-family: 'Oswald';
+      text-align: center;
+      font-size: 60px;
+      padding: 40px;
+      text-shadow: 2px 2px 4px #ffffff;
+    }
+
+    #cartas {
+      background-color: rgba(41, 41, 41, 0.881);
+      color: #fdfdfd;
+      padding: 2%;
+      border: 5px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #backgr_bt {
+      background-color: rgba(41, 41, 41, 0.853);
+      padding: 5%;
+      border: 5px;
+
+    }
+
+    #mod {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Cuestionario de Preguntas</h1>
+
+  <form method="POST" action="/predict">
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-start">
+            <div class="row">
+              <h4 class="card-title">¿Cuál es tu nivel de preocupación sobre la gripe H1N1?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta1" id="respuesta1"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">Nada preocupado/a</option>
+                <option value="1">Poco preocupado/a</option>
+                <option value="2">Algo preocupado/a</option>
+                <option value="3">Muy preocupado/a</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿El nivel de conocimiento sobre la gripe H1N1?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta2" id="respuesta2"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected></option>
+                <option value="0">No hay conocimiento</option>
+                <option value="1">Un poco de conocimiento</option>
+                <option value="2">Mucho conocimiento</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Has tomado medicamentos antivirales?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta3" id="respuesta3"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Has evitado el contacto cercano con otras personas con síntomas de gripe?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta4" id="respuesta4"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Has comprado una mascarilla?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta5" id="respuesta5"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿El médico te recomendó la vacuna contra la gripe H1N1?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta6" id="respuesta6"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿El médico te recomendó la vacuna contra la gripe estacional?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta7" id="respuesta7"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body">
+            <div class="col">
+              <h4 class="card-title">Tiene alguna de las siguientes condiciones médicas crónicas: asma u otra afección
+                pulmonar, diabetes, una
+                afección cardíaca, una afección renal, anemia drepanocítica u otra anemia, una afección neurológica o
+                neuromuscular, una afección hepática o un sistema inmunológico debilitado causado por una enfermedad
+                crónica o por
+                medicamentos tomados para una enfermedad crónica.</h4>
+            </div>
+            <div class="row d-flex align-items-end" style="padding-top: 2%;">
+              <div class="col">
+                <h5 class="card-text"></h5>
+              </div>
+              <div class="col d-flex align-items-end">
+                <select class="form-select border-4 rounded-3" name="respuesta8" id="respuesta8"
+                  style="font-size: 20px; width: 250px; padding-left: 10%;" required>
+                  <option selected> </option>
+                  <option value="0">No</option>
+                  <option value="1">Si</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Tienes contacto cercano regular con un niño menor de seis meses?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta9" id="respuesta9"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Trabajas en algún empleo relacionado con la salud?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta10" id="respuesta10"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Opinión sobre la efectividad de la vacuna H1N1?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta11" id="respuesta11"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="1">Nada efectiva</option>
+                <option value="2">Poco efectiva</option>
+                <option value="3">No sabe</option>
+                <option value="4">Algo efectiva</option>
+                <option value="5">Muy efectiva</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Opinión sobre el riesgo de enfermarse de la gripe H1N1 sin vacuna?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta12" id="respuesta12"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="1">Muy bajo</option>
+                <option value="2">Algo bajo</option>
+                <option value="3">No sabe</option>
+                <option value="4">Algo alto</option>
+                <option value="5">Muy alto</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Preocupación por enfermarse al recibir la vacuna H1N1?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta13" id="respuesta13"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="1">Nada preocupado</option>
+                <option value="2">Poco preocupado</option>
+                <option value="3">No sabe</option>
+                <option value="4">Algo preocupado</option>
+                <option value="5">Muy preocupado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Opinión sobre la efectividad de la vacuna de la gripe estacional?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta14" id="respuesta14"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="1">Nada efectiva</option>
+                <option value="2">Poco efectiva</option>
+                <option value="3">No sabe</option>
+                <option value="4">Algo efectiva</option>
+                <option value="5">Muy efectiva</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Opinión sobre el riesgo de enfermarse con la gripe estacional sin vacuna?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta15" id="respuesta15"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="1">Muy bajo</option>
+                <option value="2">Algo bajo</option>
+                <option value="3">No sabe</option>
+                <option value="4">Algo alto</option>
+                <option value="5">Muy alto</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">¿Preocupación por enfermarse al recibir la vacuna de la gripe estacional?</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta16" id="respuesta16"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="1">Nada preocupado</option>
+                <option value="2">Poco preocupado</option>
+                <option value="3">No sabe</option>
+                <option value="4">Algo preocupado</option>
+                <option value="5">Muy preocupado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Grupo de edad del encuestado:</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta17" id="respuesta17"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">18 - 34 Years</option>
+                <option value="1">35 - 44 Years</option>
+                <option value="2">45 - 54 Years</option>
+                <option value="3">55 - 64 Years</option>
+                <option value="4">65+ Years</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Nivel de educación:</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta18" id="respuesta18"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">< 12 Years</option>
+                <option value="1">12 Years</option>
+                <option value="2">Some College</option>
+                <option value="3">College Graduate</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Ingresos anuales del hogar: </h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta19" id="respuesta19"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">Below Poverty</option>
+                <option value="1"><= $75,000, Above Poverty</option>
+                <option value="2">> $75,000</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Estado civil:</h4>
+              <h5 class="card-text">
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta20" id="respuesta20"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">Soltero/a</option>
+                <option value="1">Casado/a</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Situación de vivienda:</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta21" id="respuesta21"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">Own</option>
+                <option value="1">Rent</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Estado laboral:</h4>
+              <h5 class="card-text"></div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta22" id="respuesta22"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">Not in Labor Force</option>
+                <option value="1">Employed</option>
+                <option value="2">Unemployed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Región de residencia:</h4>
+              <h5 class="card-text"></h5>
+            </div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta23" id="respuesta23"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">oxchjgsf</option>
+                <option value="1">huqouqj</option>
+                <option value="2">ufhixun</option>
+                <option value="3">rircsnp</option>
+                <option value="4">tmpeygn</option>
+                <option value="5">zgpxyit</option>
+                <option value="6">pwskwrf</option>
+                <option value="7">lyzmhmf</option>
+                <option value="8">qpwygqj</option>
+                <option value="9">bazzjca</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h4 class="card-title">Residencia dentro de áreas estadísticas metropolitanas (MSA):</h4>
+              <h5 class="card-text"></div>
+            <div class="d-flex align-items-end">
+              <select class="form-select border-4 rounded-3" name="respuesta24" id="respuesta24"
+                style="font-size: 20px; width: 250px;" required>
+                <option selected> </option>
+                <option value="0">Non-MSA</option>
+                <option value="1">MSA, Not Principle City</option>
+                <option value="2">MSA, Principle City</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding: 1%;">
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-start">
+            <div class="col">
+              <div class="row">
+                <h4 class="card-title">Número de otros adultos en el hogar (Máximo 3):</h4>
+                <h5 class="card-text">
+                </h5>
+              </div>
+              <div class="row d-flex justify-content-end">
+                <select class="form-select border-4 rounded-3" name="respuesta25" id="respuesta25"
+                  style="font-size: 20px; width: 250px;" required>
+                  <option selected> </option>
+                  <option value="0">0 adultos</option>
+                  <option value="1">1 adulto</option>
+                  <option value="2">2 adultos</option>
+                  <option value="3">3 adultos</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="cartas">
+          <div class="card-body d-flex justify-content-start">
+            <div class="col">
+              <div class="row">
+                <h4 class="card-title">Número de niños en el hogar(Máximo 3):</h4>
+                <h5 class="card-text">
+                </h5>
+              </div>
+              <div class="row d-flex justify-content-end">
+                <select class="form-select border-4 rounded-3" name="respuesta26" id="respuesta26"
+                  style="font-size: 20px; width: 250px;" required>
+                  <option selected> </option>
+                  <option value="0">0 niños</option>
+                  <option value="1">1 niño</option>
+                  <option value="2">2 niños</option>
+                  <option value="3">3 niños</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row"
+      style="padding-left: 44%; padding-right: 43%; border: 5px; display: flex; flex-direction: column; padding-bottom: 1%;">
+      <div class="justify-content-center rounded-3" id="backgr_bt">
+        <button type="submit" class="btn btn-outline-light rounded-pill fw-bold border-5" id="bt"
+          data-mdb-ripple-color="dark"
+          style="font-size: 20px; padding-bottom: 20px; width: 200px; height: 50px;">Predecir</button>
+      </div>
+    </div>
+  </form>
+  {% if resultados %}
+  <!-- Modal -->
+  <div class="modal" id="mod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="display: block;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resultados</h5>
+        </div>
+        <div class="modal-body">
+          El encuenstado <strong>{{ sol1 }}</strong> se ha puesto la vacuna H1N1. </br>
+          El encuenstado <strong>{{ sol2 }}</strong> se ha puesto la vacuna Estacional.
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <script>
+
+    let butn = document.getElementById("button")
+
+    butn.addEventListener("click", function(){
+      document.getElementById("mod").style.display = "none";
+    }
+    )
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+</body>
+
+</html>

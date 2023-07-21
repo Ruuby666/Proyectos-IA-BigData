@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <title>Segulpa Predicción</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+</head>
+
+<body class="p-3 m-0 border-0 bd-example">
+  <div class="col-12 text-center">
+    <h2 class="h1">Predicción de Entradas o Salidas de Parking</h2>
+  </div>
+
+  <div class="col pt-2 text-center">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="prediction_type" id="checkin" value="checkin" />
+      <label class="form-check-label" for="checkin">
+        Predicción de CheckIn
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="prediction_type" id="checkout" value="checkout" />
+      <label class="form-check-label" for="checkout">
+        Predicción de CheckOut
+      </label>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+    <div class="col-6">
+      <div class="container text-center">
+        <select class="form-select" id="parking" required>
+          <option disabled selected>Selecciona un parking</option>
+          <option value="0">ELDER</option>
+          <option value="1">VEGUETA</option>
+          <option value="2">SANAPÚ</option>
+          <option value="3">RINCÓN</option>
+          <option value="4">METROPOL</option>
+          <option value="5">MATA</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-6 text-center">
+      <div class="row">
+        <div class="col">
+          <div class="container text-center">
+            <select class="form-select" id="year" required>
+              <option disabled selected>Selecciona un año</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+
+    <div class="col-6 text-center">
+      <div class="row">
+        <div class="col">
+          <div class="container text-center">
+            <select class="form-select" id="month" required>
+              <option disabled selected>Selecciona un mes</option>
+              <option value="12">Diciembre</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 text-center">
+      <select class="form-select" id="day" required>
+        <option disabled selected>Selecciona la dia</option>
+        <option value="0">00</option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+
+    <div class="col-6 text-center">
+      <div class="container text-center">
+        <select class="form-select" id="hour" required>
+          <option disabled selected>Selecciona la hora</option>
+          <option value="0">00:00 - 00:59</option>
+          <option value="1">01:00 - 01:59</option>
+          <option value="2">02:00 - 02:59</option>
+          <option value="3">03:00 - 03:59</option>
+          <option value="4">04:00 - 04:59</option>
+          <option value="5">05:00 - 05:59</option>
+          <option value="6">06:00 - 06:59</option>
+          <option value="7">07:00 - 07:59</option>
+          <option value="8">08:00 - 08:59</option>
+          <option value="9">09:00 - 09:59</option>
+          <option value="10">10:00 - 10:59</option>
+          <option value="11">11:00 - 11:59</option>
+          <option value="12">12:00 - 12:59</option>
+          <option value="13">13:00 - 13:59</option>
+          <option value="14">14:00 - 14:59</option>
+          <option value="15">15:00 - 15:59</option>
+          <option value="16">16:00 - 16:59</option>
+          <option value="17">17:00 - 17:59</option>
+          <option value="18">18:00 - 18:59</option>
+          <option value="19">19:00 - 19:59</option>
+          <option value="20">20:00 - 20:59</option>
+          <option value="21">21:00 - 21:59</option>
+          <option value="22">22:00 - 22:59</option>
+          <option value="23">23:00 - 23:59</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-6 text-center">
+      <div class="container text-center">
+        <select class="form-select" id="week_day" required>
+          <option disabled selected>dia de la semana</option>
+          <option value="1">Lunes</option>
+          <option value="2">Martes</option>
+          <option value="3">Miércoles</option>
+          <option value="4">Jueves</option>
+          <option value="5">Viernes</option>
+          <option value="6">Sábado</option>
+          <option value="7">Domingo</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+    <div class="col-5 text-center">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="holiday">
+        <label class="form-check-label" for="holiday">
+          Día Festivo
+        </label>
+      </div>
+    </div>
+    <div class="col-7 text-center">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="school_day">
+        <label class="form-check-label" for="school_day">
+          Día Lectivo
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+    <div class="col-4">
+      <input class="form-control" id="temperatura" placeholder="Temperatura : 20">
+    </div>
+    <div class="col-4">
+      <input class="form-control" id="humedad" placeholder="% de Humedad : 70">
+    </div>
+  </div>
+
+  <div class="row-5 pt-5 text-center">
+    <button type="submit" id="button" class="btn btn-primary"></button>
+  </div>
+  </div>
+
+</html>
+
+<script>
+  let option = '';
+  let btn = document.getElementById('button');
+  let opcion1 = document.getElementById("checkin");
+  let opcion0 = document.getElementById("checkout");
+
+  btn.innerText = "Selecciona una opción";
+
+  function comprobar(button) {
+    if (button.checked) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function showBtn() {
+    if (opcion1.checked) {
+      btn.innerText = 'Predicción CheckIn';
+      opcion = document.getElementById("checkin");
+    } else if (opcion0.checked) {
+      btn.innerText = 'Predicción CheckOut';
+      opcion = document.getElementById("checkout");
+    }
+  }
+
+  opcion1.addEventListener("change", showBtn);
+  opcion0.addEventListener("change", showBtn);
+
+  btn.addEventListener('click', function () {
+    let parking = document.getElementById('parking').value
+    let day = document.getElementById('day').value
+    let month = document.getElementById('month').value
+    let year = document.getElementById('year').value
+    let hour = document.getElementById('hour').value
+    let holiday = document.getElementById('holiday')
+    let week_day = document.getElementById('week_day').value
+    let school_day = document.getElementById('school_day')
+    let temperatura = document.getElementById("temperatura").value
+    let humedad = document.getElementById("humedad").value
+    let model = opcion.value
+    holiday = comprobar(holiday);
+    school_day = comprobar(school_day);
+
+
+    request = {
+      "parking": parseInt(parking),
+      "day": parseInt(day),
+      "month": parseInt(month),
+      "year": parseInt(year),
+      "hour": parseInt(hour),
+      "school_day": school_day,
+      "holiday": holiday,
+      "temperatura": parseInt(temperatura),
+      "humedad": parseInt(humedad),
+      "week_day": parseInt(week_day),
+      "model": model
+    }
+    console.log(request)
+    fetch("http://127.0.0.1:8000/", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      body: JSON.stringify(request)
+    })
+      .then(function (response) {
+        if (response.status == 422) {
+          Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            text: 'Comprueba los parámetros.',
+            showCloseButton: true,
+          })
+        }
+        else {
+          promise = response.json()
+          promise.then(function (result) {
+            if (result[1] == 'checkin') {
+              Swal.fire({
+                title: 'Prediccción',
+                text: 'La precisión ha sido de: ' + result[0] + ' entradas.',
+                showCloseButton: true,
+                showClass: {
+                  popup: 'animateanimated animatefadeInDown'
+                },
+                hideClass: {
+                  popup: 'animateanimated animatefadeOutUp'
+                }
+              })
+            } else {
+              Swal.fire({
+                title: 'Resultado',
+                text: 'La precisión ha sido de: ' + result[0] + ' salidas.',
+                showCloseButton: true,
+                showClass: {
+                  popup: 'animateanimated animatefadeInDown'
+                },
+                hideClass: {
+                  popup: 'animateanimated animatefadeOutUp'
+                }
+              })
+            }
+
+          });
+        }
+      })
+      .catch(function (response) {
+        console.log(response);
+      })
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
